@@ -7,6 +7,8 @@ import { ThemeToggle } from "./theme-toggle";
 import { UserNav } from "./user-nav";
 // import prismadb from "@/lib/prismadb";
 import { getSession } from "@/lib/auth";
+import NavTabs from "./nav-tabs";
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 const Navbar = async () => {
 	// const { userId } = auth();
@@ -31,21 +33,24 @@ const Navbar = async () => {
 	];
 
 	return (
-		<div className="border-b">
-			<div className="flex h-16 items-center px-4">
-				<StoreSwitcher items={stores} />
-				<MainNav className="mx-6" />
-				<div className="ml-auto flex items-center space-x-4">
-					<ThemeToggle />
-					{/* <UserButton afterSignOutUrl="/" /> */}
-					<UserNav
-						avatarUrl={avatarUrl}
-						email={email || userName}
-						name={name}
-						// userName={userName}
-					/>
+		<div className="border-b ">
+			<MaxWidthWrapper>
+				<div className="flex items-center h-16 px-4">
+					<StoreSwitcher items={stores} />
+					{/* <MainNav className="mx-6" /> */}
+					<div className="flex items-center ml-auto space-x-4">
+						<ThemeToggle />
+						{/* <UserButton afterSignOutUrl="/" /> */}
+						<UserNav
+							avatarUrl={avatarUrl}
+							email={email || userName}
+							name={name}
+							// userName={userName}
+						/>
+					</div>
 				</div>
-			</div>
+				<NavTabs />
+			</MaxWidthWrapper>
 		</div>
 	);
 };
